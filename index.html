@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="robots" content="noindex, nofollow">
+      <title>Google Sheet Submit</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+      <link href="css/style.css" rel="stylesheet" id="bootstrap-css">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+      <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+ 
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <!--Custom CSS-->
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <!--Plugin CSS-->
+        <link href="css/plugin.css" rel="stylesheet" type="text/css">
+    
+        <!--Font Awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    
+        <link rel="stylesheet" href="fonts/line-icons.css" type="text/css">
+    </head>
+   </head>
+   <body>
+      <form method="post" id="frmSubmit">
+         <label>
+            <p class="label-txt">ENTER YOUR NAME</p>
+            <input type="text" class="input" name="first_name" required>
+            <div class="line-box">
+               <div class="line"></div>
+            </div>
+         </label>
+         <label>
+            <p class="label-txt">ENTER YOUR EMAIL</p>
+            <input type="text" class="input" name="email" required>
+            <div class="line-box">
+               <div class="line"></div>
+            </div>
+         </label>
+
+         <label>
+            <p class="label-txt">ENTER YOUR PHONE NUMBER</p>
+            <input type="number" class="input" name="phone" required>
+            <!-- <input type="tel" pattern="^\d{3}-\d{3}-\d{4}$" required>
+            <input type="number" name="phone" className="form-control" id="phone" placeholder="Phone" /> -->
+            <div class="line-box">
+               <div class="line"></div>
+            </div>
+         </label>
+
+         
+
+         <label>
+            <p class="label-txt">ENTER START DATE</p>
+            <input type="date" class="input" name="sdate" required>
+            <div class="line-box">
+               <div class="line"></div>
+            </div>
+         </label>
+
+         <label>
+            <p class="label-txt">ENTER END DATE</p>
+            <input type="date" class="input" name="edate" required>
+            <div class="line-box">
+               <div class="line"></div>
+            </div>
+         </label>
+
+         <label>
+            <p class="label-txt">NO OF PASSANGERS</p>
+            <input type="number" class="input" name="count" required>
+            <div class="line-box">
+               <div class="line"></div>
+            </div>
+         </label>
+
+         <label>
+            <p class="label-txt">ENTER A MESSAGE</p>
+            <input type="text" class="input" name="message" required>
+            <div class="line-box">
+               <div class="line"></div>
+            </div>
+         </label>
+
+
+         <button type="submit" id="btnSubmit">Submit</button>
+		 <div id="msg"></div>
+      </form>
+
+      <style>
+
+body {
+  background: #C5E1A5;
+}
+form {
+  width: 60%;
+  margin: 60px auto;
+  background: #efefef;
+  padding: 60px 120px 80px 120px;
+  text-align: center;
+  -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+  box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+}
+label {
+  display: block;
+  position: relative;
+  margin: 40px 0px;
+}
+.label-txt {
+  position: absolute;
+  top: -1.6em;
+  padding: 10px;
+  font-family: sans-serif;
+  font-size: .8em;
+  letter-spacing: 1px;
+  color: rgb(120,120,120);
+  transition: ease .3s;
+}
+.input {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.line-box {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background: #BCBCBC;
+}
+
+.line {
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #8BC34A;
+  transition: ease .6s;
+}
+
+.input:focus + .line-box .line {
+  width: 100%;
+}
+
+.label-active {
+  top: -3em;
+}
+
+button {
+  display: inline-block;
+  padding: 12px 24px;
+  background: rgb(220,220,220);
+  font-weight: bold;
+  color: rgb(120,120,120);
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: ease .3s;
+}
+
+button:hover {
+  background: #8BC34A;
+  color: #ffffff;
+}
+#msg{
+	color:red;
+}
+
+        </style>
+	  <script>
+	  jQuery('#frmSubmit').on('submit',function(e){
+		e.preventDefault();
+		jQuery('#msg').html('Please wait...');
+		jQuery('#btnSubmit').attr('disabled',true);
+		jQuery.ajax({
+			// url:'https://script.google.com/macros/s/AKfycbyu5bv6Zo1kO14hPpw0GtYGNgG3ImAWsVMTJcfIyHZyHohBHB2gENZgj1kRYiXoHyuL/exec',
+			 url:'https://script.google.com/macros/s/AKfycbysEHq6llrfpak_DAh-ny9HoUlB2C2UBprTQhadXV-gFwK-By0gR6MN60tgoz1e_zH7mw/exec',
+         
+         
+         type:'post',
+			data:jQuery('#frmSubmit').serialize(),
+			success:function(result){
+				jQuery('#frmSubmit')[0].reset();
+				jQuery('#msg').html('Thank You');
+				jQuery('#btnSubmit').attr('disabled',false);
+				//window.location.href='';
+			}
+		});
+	  });
+	  </script>
+      
+   </body>
+</html>
+
+
